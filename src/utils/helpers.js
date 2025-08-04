@@ -1,6 +1,10 @@
 // Helper functions for the shopping list app
-function formatItem(item) {
+export function formatItem(item) {
   return item.trim();
 }
 
-module.exports = { formatItem };
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
