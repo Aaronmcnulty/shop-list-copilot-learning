@@ -1,4 +1,3 @@
-import { capitalizeFirstLetter } from './utils/helpers.js';
 import { renderList } from './render.js';
 
 // Entry point for the shopping list app
@@ -14,8 +13,6 @@ function getItems() {
 function saveItems(items) {
   localStorage.setItem(shoppingListKey, JSON.stringify(items));
 }
-
-// ...existing code...
 
 document.getElementById('add-item-button').onclick = function() {
   const input = document.getElementById('item-input');

@@ -1,3 +1,6 @@
+import { capitalizeFirstLetter } from './utils/helpers.js';
+
+
 export function renderList(getItems, saveItems) {
   const items = getItems();
   const listDiv = document.getElementById('shopping-list');
@@ -9,7 +12,7 @@ export function renderList(getItems, saveItems) {
   const ul = document.createElement('ul');
   items.forEach((item, idx) => {
     const li = document.createElement('li');
-    li.textContent = item;
+    li.textContent = capitalizeFirstLetter(item);
     // Remove button
     const removeBtn = document.createElement('button');
     removeBtn.textContent = 'Remove';
@@ -25,3 +28,4 @@ export function renderList(getItems, saveItems) {
   });
   listDiv.appendChild(ul);
 }
+
