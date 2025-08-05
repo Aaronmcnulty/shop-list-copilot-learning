@@ -1,4 +1,5 @@
-import { capitalizeFirstLetter } from "./utils/helpers.js";
+import { capitalizeFirstLetter } from "../utils/helpers.js";
+
 
 export function renderList(getItems, saveItems) {
   const items = getItems();
@@ -14,6 +15,7 @@ export function renderList(getItems, saveItems) {
     li.textContent = capitalizeFirstLetter(item);
     // Remove button
     const removeBtn = document.createElement("button");
+    removeBtn.className = "remove-item-button";
     removeBtn.textContent = "Remove";
     removeBtn.style.marginLeft = "8px";
     removeBtn.onclick = () => {

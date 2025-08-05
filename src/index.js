@@ -1,8 +1,10 @@
-import { renderList } from "./render.js";
-import { getItems, saveItems } from "./utils/localStorage.js";
+import { renderList } from "./modules/render.js";
+import { getItems, saveItems } from "./modules/localStorage.js";
 
 // Entry point for the shopping list app
 // Shopping List App with localStorage
+
+console.log("Shopping List App is initializing...")
 
 
 document.getElementById("add-item-button").onclick = function () {

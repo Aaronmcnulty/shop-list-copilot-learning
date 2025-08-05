@@ -3,29 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping List App</title>
+    <title>Shopping List</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="app">
-      <div>
+      <div class="header-container">
         <h1>Shopping List App</h1>
-        <p>
+        <p class="page-description">
           Welcome to the Shopping List App! Here you can manage your shopping
           list items.
         </p>
       </div>
 
-      <div>
+      <div class="add-item-container">
+        <h2 class="add-item-header">New Item</h2>
+        <input class="item-input" type="text" id="item-input" placeholder="Add a new item" />
+        <button class="add-item-button" id="add-item-button">Add Item</button>
+      </div>
+
+      <div class="shopping-list-container">
         <h1>Shopping List</h1>
         <div id="shopping-list"></div>
       </div>
 
-      <div>
-        <h2>Add Item</h2>
-        <input type="text" id="item-input" placeholder="Add a new item" />
-        <button id="add-item-button">Add Item</button>
-      </div>
     </div>
     <script type="module" src="src/index.js"></script>
   </body>

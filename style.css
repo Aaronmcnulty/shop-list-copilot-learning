@@ -11,5 +11,59 @@ body {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 24px;
+  padding: 1em;
+}
+
+h1 {
+  color: grey;
+  font-size: 7dvw;
+  text-align: center;
+}
+
+h2{
+  font-size: 5dvw;
+  color: rgb(82, 81, 81);
+  text-align: center;
+}
+
+.page-description{
+  font-size: 3dvw;
+  color: rgb(82, 81, 81);
+  text-align: center;
+  margin: 4em 0em 4em 0em
+}
+
+.add-item-container {
+  padding:2em;
+  border: solid 5px #33c7ac;
+  background-color: #f0f0f0;
+  border-radius: 1em;
+}
+
+.add-item-list {
+  list-style: none;
+  padding: 0;
+}
+
+.add-item-button {
+  background-color: #33c7ac;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-item-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.shopping-list-container {
+  margin-top: 2em;
+  overflow: scroll;
 }
