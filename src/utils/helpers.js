@@ -1,8 +1,14 @@
 // Helper functions for the shopping list app
 export function formatItem(item) {
-  return item.trim();
+  if (typeof item === 'string') {
+    return item.trim();
+  }
+  return '';
 }
 
 export function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  if (typeof string == 'string') {
+    return string.trim().charAt(0).toUpperCase() + string.trim().slice(1).toLowerCase();
+  } 
+  return ''
 }
