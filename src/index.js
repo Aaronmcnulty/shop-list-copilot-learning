@@ -1,5 +1,5 @@
 import { renderList } from "./modules/render.js";
-import { getItems, saveItems } from "./modules/localStorage.js";
+import { getItems, saveItems } from "./modules/localStorage/localStorage.js";
 
 // Entry point for the shopping list app
 // Shopping List App with localStorage
