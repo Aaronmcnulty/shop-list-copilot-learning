@@ -81,6 +81,7 @@ h2 {
   color: var(--color-text-light);
   text-align: center;
   margin: var(--spacing-md) 0;
+  animation: appear 0.5s ease-in-out;
 }
 
 /* Shopping List */
@@ -135,6 +136,41 @@ h2 {
   padding: var(--spacing-md);
   border-bottom: 1px solid #ddd;
   transition: background-color 0.2s ease;
+  gap: var(--spacing-md);
+}
+
+.item-details {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: 1;
+}
+
+.item-name {
+  flex: 1;
+}
+
+.item-quantity {
+  width: 60px;
+  padding: var(--spacing-xs);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-sm);
+  text-align: center;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.item-quantity:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.no-items-text {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  padding: var(--spacing-md);
+  animation: appear 1s ease-in-out;
 }
 
 .shopping-list-item:hover {
@@ -149,6 +185,7 @@ h2 {
   border: solid 0.4rem var(--color-primary);
   background-color: var(--color-white);
   border-radius: var(--border-radius);
+  animation: slideIn 0.5s ease-in-out;
 }
 
 .add-item-header {
@@ -195,12 +232,16 @@ h2 {
   cursor: pointer;
   font-size: 1rem;
   min-width: 60px;
-  transition: background-color 0.2s ease;
 }
 
 .add-item-button:hover {
   background-color: #2ab19a;
 }
+
+.add-item-button:active {
+  transform: translateY(3px);
+  box-shadow: inset 0px 10px 5px rgba(0, 0, 0, 0.2);
+} 
 
 .remove-item-button {
   background-color: var(--color-danger);
@@ -209,9 +250,37 @@ h2 {
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
   cursor: pointer;
-  transition: background-color 0.2s ease;
 }
 
 .remove-item-button:hover {
-  background-color: #ff3333;
+  background-color: #c91e1e;
 }
+
+.remove-item-button:active {
+  transform: translateY(3px);
+  box-shadow: inset 0px 10px 5px rgba(0, 0, 0, 0.2);
+} 
+
+
+/* Animations */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-1210px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
