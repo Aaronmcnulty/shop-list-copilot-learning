@@ -1,4 +1,3 @@
-
 const shoppingListKey = "shoppingListItems";
 
 export function getItems() {

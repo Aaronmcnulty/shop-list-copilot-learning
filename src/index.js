@@ -3,8 +3,7 @@ import { getItems, saveItems } from "./modules/localStorage.js";
 
 // Entry point for the shopping list app
 // Shopping List App with localStorage
-console.log("Shopping List App is initializing...")
-
+console.log("Shopping List App is initializing...");
 
 document.getElementById("add-item-button").onclick = function () {
   const input = document.getElementById("item-input");

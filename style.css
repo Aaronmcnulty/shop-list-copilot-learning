@@ -1,68 +1,184 @@
+:root {
+  --color-primary: #33c7ac;
+  --color-danger: #ff4d4d;
+  --color-bg: #e6e6e6;
+  --color-bg-light: #e4e4e4;
+  --color-text: rgb(66, 66, 66);
+  --color-text-light: rgb(82, 81, 81);
+  --color-border: rgb(205, 239, 223);
+  --color-white: #ffffff;
+  
+  --spacing-xs: 0.3rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  
+  --border-radius-sm: 0.5rem;
+  --border-radius: 1rem;
+  
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 body {
   font-family: Arial, sans-serif;
-  background: #e6e6e6;
+  background: var(--color-bg);
   margin: 0;
-  height:100dvh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
 }
 
 #app {
-  max-width: 100dvw;
-  background: #e4e4e4;
-  border-radius: 1em;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 0.5em;
-  max-height:95dvh;
+  width: 100%;
+  max-width: 800px;
+  background: var(--color-bg-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-md);
+  max-height: 95dvh;
   display: grid;
-  grid-template-rows: 2fr 8fr 2fr;
-  flex-direction: column;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--spacing-md);
 }
 
-p{
-  margin:0em;
+/* Typography */
+p {
+  margin: 0;
 }
 
 h1 {
-  color: rgb(66, 66, 66);
-  font-size: 3dvh;
+  color: var(--color-text);
+  font-size: clamp(1.5rem, 3dvh, 2.5rem);
   text-align: center;
-  margin:0em;
+  margin: 0;
 }
 
-h2{
-  font-size: 2dvh;
-  color: rgb(82, 81, 81);
+h2 {
+  font-size: clamp(1rem, 2dvh, 1.5rem);
+  color: var(--color-text-light);
   text-align: center;
-  margin:0em;
+  margin: 0;
 }
 
-.page-description{
-  font-size: 3dvw;
-  color: rgb(82, 81, 81);
-  text-align: center;
-  margin: 2em 0em 1em 0em
+/* Header */
+
+
+.header-container {
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  background-color: var(--color-white);
 }
+
+.page-description {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--color-text-light);
+  text-align: center;
+  margin: var(--spacing-md) 0;
+}
+
+/* Shopping List */
+
+
+.shopping-list-container {
+  grid-row: 2;
+  padding: var(--spacing-md);
+  border: solid 1rem var(--color-border);
+  border-radius: var(--border-radius);
+  margin: var(--spacing-md) 0;
+  background-color: var(--color-white);
+}
+
+.shopping-list-header {
+  text-align: center;
+  background-color: var(--color-border);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+}
+
+.shopping-list {
+  height: 40dvh;
+}
+
+.shopping-list-ul {
+  overflow-y: auto;
+  height: 100%;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) #f1f1f1;
+}
+
+.shopping-list-ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.shopping-list-ul::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.shopping-list-ul::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+.shopping-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s ease;
+}
+
+.shopping-list-item:hover {
+  background-color: #f8f8f8;
+}
+
+/* Add Item Section */
+
 
 .add-item-container {
-  grid-row: 3;
-  padding:0.5em;
-  border: solid 0.4em #33c7ac;
-  background-color: #ffffff;
-  border-radius: 1em;
+  padding: var(--spacing-md);
+  border: solid 0.4rem var(--color-primary);
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
 }
 
 .add-item-header {
   text-align: center;
-  color: rgb(66, 66, 66);
-  font-size: 2.5dvh;
-  padding-bottom:1em;
+  font-size: clamp(1.2rem, 2.5dvh, 1.8rem);
+  padding-bottom: var(--spacing-md);
+  color: var(--color-text);
 }
 
-.add-item-form{
+.add-item-form {
   display: flex;
-  flex-direction: column;
-  gap: 0.5em;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.item-input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-md);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.item-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
 }
 
 .add-item-list {
@@ -71,67 +187,31 @@ h2{
 }
 
 .add-item-button {
-  background-color: #33c7ac;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   border: none;
-  padding: 1em;
-  border-radius: 1em;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
+  font-size: 1rem;
+  min-width: 60px;
+  transition: background-color 0.2s ease;
+}
+
+.add-item-button:hover {
+  background-color: #2ab19a;
 }
 
 .remove-item-button {
-  background-color: #ff4d4d;
-  color: white;
+  background-color: var(--color-danger);
+  color: var(--color-white);
   border: none;
-  padding: 0.3em 0.5em;
-  border-radius: 0.5em;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.shopping-list-item{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5em;
-  border-bottom: 0.1em solid #ddd;
-}
-
-.shopping-list-container {
-  grid-row: 2;
-  padding: 0.5em;
-  border:solid 2vw rgb(205, 239, 223);
-  border-radius: 1em;
-  margin: 1em 0em 1em 0em;
-  background-color: white;
-
-}
-.shopping-list-header {
-  text-align: center;
-  background-color: rgb(205, 239, 223);
-  padding: 1em 0em 1em 0em;
-  border-radius: 1em;
-}
-
-.shopping-list{
-  height: 40dvh;
-}
-
-.shopping-list-ul{
-    overflow: scroll;
-    height: 100%;
-}
-
-ul{
-  padding: 0em;
-}
-
-.header-container {
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 1em;
-  padding: 1em;
-  background-color: white;
+.remove-item-button:hover {
+  background-color: #ff3333;
 }

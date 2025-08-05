@@ -1,6 +1,5 @@
 import { capitalizeFirstLetter } from "../utils/helpers.js";
 
-
 export function renderList(getItems, saveItems) {
   const items = getItems();
   const listDiv = document.getElementById("shopping-list");
