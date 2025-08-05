@@ -10,8 +10,10 @@ export function renderList(getItems, saveItems) {
     return;
   }
   const ul = document.createElement("ul");
+  ul.className = "shopping-list-ul";
   items.forEach((item, idx) => {
     const li = document.createElement("li");
+    li.className = "shopping-list-item";
     li.textContent = capitalizeFirstLetter(item);
     // Remove button
     const removeBtn = document.createElement("button");

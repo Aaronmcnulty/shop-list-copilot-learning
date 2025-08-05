@@ -1,43 +1,67 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f9f9f9;
+  background: #e6e6e6;
   margin: 0;
-  padding: 0;
+  height:100dvh;
+  display: flex;
+  align-items: center;
 }
 
 #app {
   max-width: 400px;
-  margin: 40px auto;
-  background: #fff;
+  background: #e4e4e4;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1em;
+  padding: 0.5em;
+  max-height:95dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+p{
+  margin:0em;
 }
 
 h1 {
-  color: grey;
+  color: rgb(66, 66, 66);
   font-size: 7dvw;
   text-align: center;
+  margin:0em;
+  padding-top: 0.5em;
 }
 
 h2{
   font-size: 5dvw;
   color: rgb(82, 81, 81);
   text-align: center;
+  margin:0em;
 }
 
 .page-description{
   font-size: 3dvw;
   color: rgb(82, 81, 81);
   text-align: center;
-  margin: 4em 0em 4em 0em
+  margin: 2em 0em 1em 0em
 }
 
 .add-item-container {
-  padding:2em;
+  padding:1em;
   border: solid 5px #33c7ac;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   border-radius: 1em;
+}
+
+.add-item-header {
+  text-align: center;
+  color: rgb(66, 66, 66);
+  font-size: 5dvw;
+  margin-bottom:1em;
+}
+
+.add-item-form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
 .add-item-list {
@@ -63,7 +87,43 @@ h2{
   cursor: pointer;
 }
 
+.shopping-list-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  border-bottom: 1px solid #ddd;
+}
+
 .shopping-list-container {
-  margin-top: 2em;
+  padding: 0.5em;
+  border:solid 2vw  rgb(205, 239, 223);
+  border-radius: 1em;
+  margin: 1em 0em 1em 0em;
+  background-color: white;
+}
+.shopping-list-header {
+  text-align: center;
+  background-color: rgb(205, 239, 223);
+  padding: 1em 0em 1em 0em;
+  border-radius: 1em;
+}
+
+.shopping-list{
   overflow: scroll;
+  height: 45dvh;
+}
+
+ul{
+  padding: 0em;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+  padding: 1em;
+  background-color: white;
 }
