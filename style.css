@@ -8,13 +8,14 @@ body {
 }
 
 #app {
-  max-width: 400px;
+  max-width: 100dvw;
   background: #e4e4e4;
-  border-radius: 8px;
+  border-radius: 1em;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 0.5em;
   max-height:95dvh;
-  display: flex;
+  display: grid;
+  grid-template-rows: 2fr 8fr 2fr;
   flex-direction: column;
 }
 
@@ -24,14 +25,13 @@ p{
 
 h1 {
   color: rgb(66, 66, 66);
-  font-size: 7dvw;
+  font-size: 3dvh;
   text-align: center;
   margin:0em;
-  padding-top: 0.5em;
 }
 
 h2{
-  font-size: 5dvw;
+  font-size: 2dvh;
   color: rgb(82, 81, 81);
   text-align: center;
   margin:0em;
@@ -45,8 +45,9 @@ h2{
 }
 
 .add-item-container {
-  padding:1em;
-  border: solid 5px #33c7ac;
+  grid-row: 3;
+  padding:0.5em;
+  border: solid 0.4em #33c7ac;
   background-color: #ffffff;
   border-radius: 1em;
 }
@@ -54,8 +55,8 @@ h2{
 .add-item-header {
   text-align: center;
   color: rgb(66, 66, 66);
-  font-size: 5dvw;
-  margin-bottom:1em;
+  font-size: 2.5dvh;
+  padding-bottom:1em;
 }
 
 .add-item-form{
@@ -73,8 +74,8 @@ h2{
   background-color: #33c7ac;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 1em;
+  border-radius: 1em;
   cursor: pointer;
 }
 
@@ -82,8 +83,8 @@ h2{
   background-color: #ff4d4d;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+  padding: 0.3em 0.5em;
+  border-radius: 0.5em;
   cursor: pointer;
 }
 
@@ -92,15 +93,17 @@ h2{
   justify-content: space-between;
   align-items: center;
   padding: 0.5em;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0.1em solid #ddd;
 }
 
 .shopping-list-container {
+  grid-row: 2;
   padding: 0.5em;
-  border:solid 2vw  rgb(205, 239, 223);
+  border:solid 2vw rgb(205, 239, 223);
   border-radius: 1em;
   margin: 1em 0em 1em 0em;
   background-color: white;
+
 }
 .shopping-list-header {
   text-align: center;
@@ -110,8 +113,12 @@ h2{
 }
 
 .shopping-list{
-  overflow: scroll;
-  height: 45dvh;
+  height: 40dvh;
+}
+
+.shopping-list-ul{
+    overflow: scroll;
+    height: 100%;
 }
 
 ul{
@@ -119,6 +126,7 @@ ul{
 }
 
 .header-container {
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
