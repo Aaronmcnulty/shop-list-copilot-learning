@@ -13,20 +13,17 @@ console.log("Shopping List App is initializing...");
   the list.
 */
 
-  document.getElementById("add-item-button").onclick = function(){
-      const nameInput = document.getElementById("item-input");
-      const quantityInput = document.getElementById("item-quantity-input");
-      const nameValue = nameInput.value.trim();
-      const quantityValue = quantityInput.value.trim();
-      nameInput.value = "";
-      quantityInput.value = "";
-      handleAddItemClick(nameValue, quantityValue);   
-  }
+document.getElementById("add-item-button").onclick = function () {
+  const nameInput = document.getElementById("item-input");
+  const quantityInput = document.getElementById("item-quantity-input");
+  const nameValue = nameInput.value.trim();
+  const quantityValue = quantityInput.value.trim();
+  nameInput.value = "";
+  quantityInput.value = "";
+  handleAddItemClick(nameValue, quantityValue);
+};
 
 // On page load, render the shopping list from localStorage.
 document.addEventListener("DOMContentLoaded", function () {
   renderList(getItems, saveItems);
-  
 });
-
-
