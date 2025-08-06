@@ -2,7 +2,7 @@
 const config = {
   testEnvironment: "jsdom",
   transform: {
-    "^.+\\.js$": "babel-jest"
+    "^.+\\.js$": "babel-jest",
   },
   clearMocks: true,
 };

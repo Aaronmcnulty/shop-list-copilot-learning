@@ -7,15 +7,15 @@
   --color-text-light: rgb(82, 81, 81);
   --color-border: rgb(205, 239, 223);
   --color-white: #ffffff;
-  
+
   --spacing-xs: 0.3rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 2rem;
-  
+
   --border-radius-sm: 0.5rem;
   --border-radius: 1rem;
-  
+
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -64,7 +64,6 @@ h2 {
 
 /* Header */
 
-
 .header-container {
   grid-row: 1;
   display: flex;
@@ -85,7 +84,6 @@ h2 {
 }
 
 /* Shopping List */
-
 
 .shopping-list-container {
   grid-row: 2;
@@ -179,7 +177,6 @@ h2 {
 
 /* Add Item Section */
 
-
 .add-item-container {
   padding: var(--spacing-md);
   border: solid 0.4rem var(--color-primary);
@@ -241,7 +238,7 @@ h2 {
 .add-item-button:active {
   transform: translateY(3px);
   box-shadow: inset 0px 10px 5px rgba(0, 0, 0, 0.2);
-} 
+}
 
 .remove-item-button {
   background-color: var(--color-danger);
@@ -259,8 +256,7 @@ h2 {
 .remove-item-button:active {
   transform: translateY(3px);
   box-shadow: inset 0px 10px 5px rgba(0, 0, 0, 0.2);
-} 
-
+}
 
 /* Animations */
 
@@ -283,4 +279,3 @@ h2 {
     opacity: 1;
   }
 }
-
