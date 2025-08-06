@@ -1,4 +1,4 @@
-import { renderList } from "./modules/render.js";
+import { renderList } from "./modules/renderList/renderList.js";
 import { getItems, saveItems } from "./modules/localStorage/localStorage.js";
 
 // Entry point for the shopping list app
@@ -19,9 +19,9 @@ document.getElementById("add-item-button").onclick = function () {
   const quantityValue = quantityInput.value.trim();
   // If both name and quantity are provided, add the item to the list and update localStorage.
   if (nameValue && quantityValue) {
-    const items = getItems();
+    const items = getItems('shoppingListItems');
     items.push({ name: nameValue, quantity: quantityValue});
-    saveItems(items);
+    saveItems('shoppingListItems', items);
   // render the updated list and clear the input fields.
     renderList(getItems, saveItems);
     nameInput.value = "";

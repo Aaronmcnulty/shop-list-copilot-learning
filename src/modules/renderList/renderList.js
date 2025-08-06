@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from "../utils/helpers.js";
+import { capitalizeFirstLetter } from "../../utils/helpers.js";
 
 // Render the shopping list items in the DOM
 // This function retrieves items from localStorage, creates HTML elements for each item,
@@ -12,7 +12,7 @@ import { capitalizeFirstLetter } from "../utils/helpers.js";
 
 export function renderList(getItems, saveItems) {
   // Retrieve items from localStorage
-  const items = getItems();
+  const items = getItems('shoppingListItems');
   // Get the shopping list container and clear its content
   const listDiv = document.getElementById("shopping-list");
   listDiv.innerHTML = "";
@@ -52,12 +52,12 @@ export function renderList(getItems, saveItems) {
     quantityInput.min = 1;
     // Add an event listener to update the quantity in localStorage when changed by the user
     quantityInput.addEventListener('change', (e) => {
-      const items = getItems();
+      const items = getItems('shoppingListItems');
       items[idx] = { 
         name: typeof items[idx] === 'object' ? items[idx].name : items[idx],
         quantity: parseInt(e.target.value) || 1
       };
-      saveItems(items);
+      saveItems('shoppingListItems', items);
     });
   
     // Append item name and quantity input to the item details container
@@ -75,9 +75,9 @@ export function renderList(getItems, saveItems) {
     // It retrieves the current items in localStorage, removes the clicked item, and saves the 
     // updated list and re-renders the list.
     removeBtn.onclick = () => {
-      const updated = getItems();
+      const updated = getItems('shoppingListItems');
       updated.splice(idx, 1);
-      saveItems(updated);
+      saveItems('shoppingListItems', updated);
       renderList(getItems, saveItems);
     };
     // Append the remove button to the list item and then to the unordered list
