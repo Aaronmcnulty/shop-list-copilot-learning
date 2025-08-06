@@ -20,7 +20,7 @@ console.log("Shopping List App is initializing...");
       const quantityValue = quantityInput.value.trim();
       nameInput.value = "";
       quantityInput.value = "";
-      handleAddItemClick(nameValue, quantityValue);   
+      handleAddItemClick({nameValue, quantityValue});   
   } 
 
 
