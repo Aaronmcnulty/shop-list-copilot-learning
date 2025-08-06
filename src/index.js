@@ -12,13 +12,25 @@ console.log("Shopping List App is initializing...");
   adds the item to the shopping list, saves it to localStorage, and re-renders
   the list.
 */
-const t = document.getElementById("add-item-button").onclick = function () {
-  handleAddItemClick();
-};
+
+  document.getElementById("add-item-button").onclick = function(){
+      const nameInput = document.getElementById("item-input");
+      const quantityInput = document.getElementById("item-quantity-input");
+      const nameValue = nameInput.value.trim();
+      const quantityValue = quantityInput.value.trim();
+      nameInput.value = "";
+      quantityInput.value = "";
+      handleAddItemClick(nameValue, quantityValue);   
+  } 
+
+
 
 
 
 // On page load, render the shopping list from localStorage.
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
   renderList(getItems, saveItems);
-};
+  
+});
+
+
