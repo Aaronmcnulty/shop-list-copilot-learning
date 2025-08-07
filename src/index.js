@@ -2,17 +2,12 @@ import { renderList } from "./modules/renderList/renderList.js";
 import { getItems, saveItems } from "./modules/localStorage/localStorage.js";
 import { handleAddItemClick } from "./modules/handleAddItemClick/handleAddItemClick.js";
 
-// Entry point for the shopping list app
-// Shopping List App with localStorage
 console.log("Shopping List App is initializing...");
 
-/*
-  Add event listener to the "Add Item" button.  
-  When clicked, it retrieves the item name and quantity from the input fields,
-  adds the item to the shopping list, saves it to localStorage, and re-renders
-  the list.
-*/
-
+// Add event listener to the "Add Item" button.  
+// When clicked, it retrieves the item name and quantity from the input fields,
+// adds the item to the shopping list, saves it to localStorage, and re-renders
+//  the list.
 document.getElementById("add-item-button").addEventListener("click", function () {
   const nameInput = document.getElementById("item-input");
   const quantityInput = document.getElementById("item-quantity-input");
@@ -37,6 +32,13 @@ document.getElementById("add-item-button").addEventListener("click", function ()
     return;
   }
 
+  const items = getItems("shoppingListItems");
+  if(items.find(item => item.name.toLowerCase() === nameValue)) {
+    errorMessageElement.textContent = "Item already exists in the list.";
+    return;
+  }
+
+  // Attempt to add the item to the list and handle any errors that may occur.
   try {
     handleAddItemClick(nameValue, quantityValue);
     nameInput.value = ""; // Reset name input field
