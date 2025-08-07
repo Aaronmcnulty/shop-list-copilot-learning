@@ -71,68 +71,33 @@ describe("handleAddItemClick", () => {
     expect(getItems).toHaveBeenCalledWith("shoppingListItems");
   });
 
-  test("Should not be called when both arguments are empty strings.", () => {
+  test("Should not be throw error when quantityValue type is string.", () => {
     // Emepty string mock input values
-    const nameValue = "";
-    const quantityValue = "";
-
-    // Spy on the getItems, saveItems and renderList functions.
-    const getItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "getItems",
-    );
-    const saveItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "saveItems",
-    );
-    const renderList = jest.spyOn(
-      require("../renderList/renderList.js"),
-      "renderList",
-    );
-
-    // Call the function with empty string values.
-    handleAddItemClick(nameValue, quantityValue);
-
-    // Check that getItems, saveItems and renderList were not called.
-    expect(getItems).not.toHaveBeenCalledWith("shoppingListItems");
-    expect(saveItems).not.toHaveBeenCalledWith("shoppingListItems", [
-      { name: "Apples", quantity: 2 },
-      { name: "Oranges", quantity: 2 },
-      { name: "", quantity: "" },
-    ]);
-    expect(renderList).not.toHaveBeenCalledWith(getItems, saveItems);
-  });
-
-  test("Should not be called when one of the arguments is an empty string.", () => {
-    // Mock input values.
     const nameValue = "Grapes";
     const quantityValue = "";
 
-    // Spy on the getItems, saveItems and renderList functions.
-    const getItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "getItems",
-    );
-    const saveItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "saveItems",
-    );
-    const renderList = jest.spyOn(
-      require("../renderList/renderList.js"),
-      "renderList",
-    );
+    // Check that getItems, saveItems and renderList were not called.
+    expect(() => {handleAddItemClick(nameValue, quantityValue)}).toThrow("Invalid input: nameValue must be a string and quantityValue must be a number.");
+  });
 
-    // Call the function
-    handleAddItemClick(nameValue, quantityValue);
+  test("Should throw error when quantityValue is 0.", () => {
+    // Mock input values.
+    const nameValue = "Grapes";
+    const quantityValue = 0;
 
     // Check that getItems, saveItems and renderList were not called.
-    expect(getItems).not.toHaveBeenCalledWith("shoppingListItems");
-    expect(saveItems).not.toHaveBeenCalledWith("shoppingListItems", [
-      { name: "Apples", quantity: 2 },
-      { name: "Oranges", quantity: 2 },
-      { name: "", quantity: "" },
-    ]);
-    expect(renderList).not.toHaveBeenCalledWith(getItems, saveItems);
+    expect(() => {handleAddItemClick(nameValue, quantityValue)}).toThrow("Invalid input: Name cannot be empty and quantity must be at least 1.");
+  
+  });
+
+  test("Should throw error when quantityValue is negative.", () => {
+    // Mock input values.
+    const nameValue = "Grapes";
+    const quantityValue = -2;
+
+    // Check that getItems, saveItems and renderList were not called.
+    expect(() => {handleAddItemClick(nameValue, quantityValue)}).toThrow("Invalid input: Name cannot be empty and quantity must be at least 1.");
+
   });
 
   test("Should not be called when both arguments are undefined.", () => {
@@ -140,92 +105,26 @@ describe("handleAddItemClick", () => {
     const nameValue = undefined;
     const quantityValue = undefined;
 
-    // Spy on the getItems, saveItems and renderList functions.
-    const getItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "getItems",
-    );
-    const saveItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "saveItems",
-    );
-    const renderList = jest.spyOn(
-      require("../renderList/renderList.js"),
-      "renderList",
-    );
+    
 
-    // Call the function
-    handleAddItemClick(nameValue, quantityValue);
-
-    // Check that getItems, saveItems and renderList were not called.
-    expect(getItems).not.toHaveBeenCalledWith("shoppingListItems");
-    expect(saveItems).not.toHaveBeenCalledWith("shoppingListItems", [
-      { name: "Apples", quantity: 2 },
-      { name: "Oranges", quantity: 2 },
-      { name: "", quantity: "" },
-    ]);
-    expect(renderList).not.toHaveBeenCalledWith(getItems, saveItems);
+   // Check that getItems, saveItems and renderList were not called.
+    expect(() => {handleAddItemClick(nameValue, quantityValue)}).toThrow("Invalid input: nameValue must be a string and quantityValue must be a number.");
+  
   });
 
   test("Should not be called when both arguments are null.", () => {
     const nameValue = null;
     const quantityValue = null;
 
-    // Spy on the getItems, saveItems and renderList functions.
-    const getItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "getItems",
-    );
-    const saveItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "saveItems",
-    );
-    const renderList = jest.spyOn(
-      require("../renderList/renderList.js"),
-      "renderList",
-    );
 
-    // Call the function with null values.
-    handleAddItemClick(nameValue, quantityValue);
-
-    // Check that getItems, saveItems and renderList were not called.
-    expect(getItems).not.toHaveBeenCalledWith("shoppingListItems");
-    expect(saveItems).not.toHaveBeenCalledWith("shoppingListItems", [
-      { name: "Apples", quantity: 2 },
-      { name: "Oranges", quantity: 2 },
-      { name: "", quantity: "" },
-    ]);
-    expect(renderList).not.toHaveBeenCalledWith(getItems, saveItems);
+    expect(() => {handleAddItemClick(nameValue, quantityValue)}).toThrow("Invalid input: nameValue must be a string and quantityValue must be a number.");
   });
 
   test("Should not be called when both arguments are NaN.", () => {
     const nameValue = NaN;
     const quantityValue = NaN;
 
-    // Spy on the getItems, saveItems and renderList functions.
-    const getItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "getItems",
-    );
-    const saveItems = jest.spyOn(
-      require("../localStorage/localStorage.js"),
-      "saveItems",
-    );
-    const renderList = jest.spyOn(
-      require("../renderList/renderList.js"),
-      "renderList",
-    );
+    expect(() => {handleAddItemClick(nameValue, quantityValue)}).toThrow("Invalid input: nameValue must be a string and quantityValue must be a number.");
 
-    // Call the function with NaN values.
-    handleAddItemClick(nameValue, quantityValue);
-
-    // Check that getItems, saveItems and renderList were not called.
-    expect(getItems).not.toHaveBeenCalledWith("shoppingListItems");
-    expect(saveItems).not.toHaveBeenCalledWith("shoppingListItems", [
-      { name: "Apples", quantity: 2 },
-      { name: "Oranges", quantity: 2 },
-      { name: "", quantity: "" },
-    ]);
-    expect(renderList).not.toHaveBeenCalledWith(getItems, saveItems);
   });
 });
