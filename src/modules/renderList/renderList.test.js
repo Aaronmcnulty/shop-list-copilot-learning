@@ -1,63 +1,39 @@
-import { renderList } from "./renderList";
+import { renderList } from "./renderList.js";
+import { getItems, saveItems } from "../localStorage/localStorage.js";
 
 describe("renderList", () => {
-  // Mock localStorage.
-  const localStorageMock = (function () {
-    let store = {};
-    return {
-      getItem(key) {
-        return store[key];
-      },
-      setItem(key, value) {
-        store[key] = value;
-      },
-      clear() {
-        store = {};
-      },
-      removeItem(key) {
-        delete store[key];
-      },
-      getAll() {
-        return store;
-      },
-    };
-  })();
-  Object.defineProperty(window, "localStorage", { value: localStorageMock });
-
-  // Stores passed in key/value pairs in localStorage.
-  const setLocalStorage = (key, value) => {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  };
-
-  // Retrieves items from localStorage by key.
-  const getLocalStorage = (key) => {
-    const items = localStorage.getItem(key);
-    return items ? JSON.parse(items) : [];
-  };
-
+  
   // Set up test environment before each test.
   beforeEach(() => {
-    // Clear localStorage before each test to ensure a clean state.
-    window.localStorage.clear();
-
+    
     // Create mock item array to be used in tests.
     let itemsArray = [
       { name: "Apples", quantity: 2 },
       { name: "Oranges", quantity: 2 },
     ];
 
+    // reset document body to ensure a clean slate for each test.
+     document.body.innerHTML = '<div id="shopping-list"></div>';
+
+
     // Store the mock items in localStorage.
-    setLocalStorage("shoppingListItems", itemsArray);
+    saveItems("shoppingListItems", itemsArray);
+  });
+
+  afterEach(() => {
+    // Clear localStorage before each test to ensure a clean state.
+    window.localStorage.clear();
+  
+    document.body.innerHTML = '';
   });
 
   // **Test cases for renderList function.**
 
   it("should create a list with items from localStorage", () => {
     // Create a container for the rendered list
-    document.body.innerHTML = '<div id="shopping-list"></div>';
 
     // Call renderList with mocked localStorage functions
-    renderList(getLocalStorage, setLocalStorage);
+    renderList(getItems, saveItems);
 
     // Check if the list is rendered correctly
     const ul = document.querySelector(".shopping-list-ul");
@@ -76,13 +52,10 @@ describe("renderList", () => {
 
   it("should display 'No items yet.' when there are no items", () => {
     // Clear localStorage to simulate no items.
-    setLocalStorage("shoppingListItems", []);
-
-    // Create a container for the rendered list
-    document.body.innerHTML = '<div id="shopping-list"></div>';
+    saveItems("shoppingListItems", []);
 
     // Call renderList with mocked localStorage functions
-    renderList(getLocalStorage, setLocalStorage);
+    renderList(getItems, saveItems);
 
     // Check if the no items message is displayed in the list container
     const noItemsText = document.querySelector(".no-items-text");
@@ -91,17 +64,15 @@ describe("renderList", () => {
   });
 
   it("should update item quantity in localStorage when changed", () => {
-    // Create a container for the rendered list.
-    document.body.innerHTML = '<div id="shopping-list"></div>';
-
+   
     // Mock saveItems to so we can check if it was called with the correct parameters.
     const mockSaveItems = jest.fn();
 
     // Call renderList with mocked functions
-    renderList(getLocalStorage, mockSaveItems);
+    renderList(getItems, mockSaveItems);
 
     // Check if initial items are rendered correctly
-    expect(getLocalStorage("shoppingListItems")).toEqual([
+    expect(getItems("shoppingListItems")).toEqual([
       { name: "Apples", quantity: 2 },
       { name: "Oranges", quantity: 2 },
     ]);
@@ -122,14 +93,12 @@ describe("renderList", () => {
   });
 
   it("should remove an item when the remove button is clicked", () => {
-    // Create a container for the rendered list
-    document.body.innerHTML = '<div id="shopping-list"></div>';
-
+    
     // Call renderList with mocked localStorage functions
-    renderList(getLocalStorage, setLocalStorage);
+    renderList(getItems, saveItems);
 
     // Check if the initial items are rendered correctly
-    expect(getLocalStorage("shoppingListItems")).toEqual([
+    expect(getItems("shoppingListItems")).toEqual([
       { name: "Apples", quantity: 2 },
       { name: "Oranges", quantity: 2 },
     ]);
@@ -139,17 +108,15 @@ describe("renderList", () => {
     removeButtons[0].click();
 
     // Check if saveItems was called with the updated list
-    expect(getLocalStorage("shoppingListItems")).toEqual([
+    expect(getItems("shoppingListItems")).toEqual([
       { name: "Oranges", quantity: 2 },
     ]);
   });
 
   it("Should create a remove button for each item", () => {
-    // Create a container for the rendered list
-    document.body.innerHTML = '<div id="shopping-list"></div>';
-
+    
     // Call renderList with mocked localStorage functions
-    renderList(getLocalStorage, setLocalStorage);
+    renderList(getItems, saveItems);
 
     // Check if the remove button is created for each item.
     const removeButtons = document.querySelectorAll(".remove-item-button");
@@ -158,11 +125,9 @@ describe("renderList", () => {
   });
 
   it("Should rerender the list after an item is removed", () => {
-    // Create a container for the rendered list
-    document.body.innerHTML = '<div id="shopping-list"></div>';
-
+    
     // Call renderList with mocked localStorage functions
-    renderList(getLocalStorage, setLocalStorage);
+    renderList(getItems, saveItems);
 
     // Find the remove button for the first list item element and click it
     const removeButtons = document.querySelectorAll(".remove-item-button");
@@ -176,4 +141,30 @@ describe("renderList", () => {
     );
     expect(ul.children[0].querySelector(".item-quantity").value).toBe("2");
   });
+
+  it("Should not render the list if no items are present", () => {
+    
+    // Clear localStorage to simulate no items.
+    saveItems("shoppingListItems", []);
+
+    // Call renderList with mocked localStorage functions
+    renderList(getItems, saveItems);
+
+    // Check if the list is not rendered and the no items message is displayed
+    const ul = document.querySelector(".shopping-list-ul");
+    expect(ul).toBeNull();
+    const noItemsText = document.querySelector(".no-items-text");
+    expect(noItemsText).not.toBeNull();
+  });
+
+  it("should create accessibility attributes for elements", () => {
+    renderList(getItems, saveItems);
+
+    const quantityInput = document.querySelector(".item-quantity");
+    expect(quantityInput.getAttribute("aria-label")).toContain("Apples");
+    
+    const removeButton = document.querySelector(".remove-item-button");
+    expect(removeButton.getAttribute("aria-label")).toContain("Apples");
+  });
+
 });

@@ -25,6 +25,7 @@ export function renderList(getItems, saveItems) {
   // the item from the list.
   const ul = document.createElement("ul");
   ul.className = "shopping-list-ul";
+  
   // Iterate over each item, creating a list item element for each.
   items.forEach((item, idx) => {
     const li = document.createElement("li");
@@ -40,15 +41,16 @@ export function renderList(getItems, saveItems) {
     itemName.textContent = capitalizeFirstLetter(
       typeof item === "object" ? item.name : item,
     );
+    itemName.setAttribute("aria-label", `Item name: ${itemName.textContent}`);
 
     // create quantity input element and set its properties.
     const quantityInput = document.createElement("input");
     quantityInput.type = "number";
     quantityInput.className = "item-quantity";
-    quantityInput.id = "list-item-quantity";
+    quantityInput.id = `list-item-quantity-${idx}`;
+    quantityInput.setAttribute("aria-label", `Quantity input for ${itemName.textContent}`);
     // Set the value to the item's quantity or default to 1 if not an object.
     quantityInput.value = typeof item === "object" ? item.quantity : 1;
-    quantityInput.min = 1;
     // Add an event listener to update the quantity in localStorage when changed by the user.
     quantityInput.addEventListener("change", (e) => {
       const items = getItems("shoppingListItems");
@@ -69,6 +71,8 @@ export function renderList(getItems, saveItems) {
     const removeBtn = document.createElement("button");
     removeBtn.className = "remove-item-button";
     removeBtn.textContent = "Remove";
+    removeBtn.setAttribute("aria-label", `Remove ${item.name} button`);
+
     // Add an event listener to the remove button to handle item removal.
     // It retrieves the current items in localStorage, removes the clicked item, and saves the
     // updated list and re-renders the list.
