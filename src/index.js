@@ -18,8 +18,8 @@ document.getElementById("add-item-button").onclick = function () {
   const quantityInput = document.getElementById("item-quantity-input");
   const nameValue = nameInput.value.trim();
   const quantityValue = quantityInput.value.trim();
-  nameInput.value = "";
-  quantityInput.value = "";
+  nameInput.value = "";   // Reset name input field
+  quantityInput.value = 1; // Reset quantity to default value
   handleAddItemClick(nameValue, quantityValue);
 };
 

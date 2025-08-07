@@ -1,9 +1,3 @@
-const shoppingListKey = "shoppingListItems";
-
-/*
-  Functions to manage shopping list items in localStorage
-  This module provides functions to get and save items in localStorage
-*/
 
 /*
   Get items from localStorage
