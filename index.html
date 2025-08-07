@@ -25,10 +25,9 @@
 
       <div class="add-item-container">
         <h2 class="add-item-header">Add An Item</h2>
-          <p id="errorMessage"></p>
+          <p id="errorMessage" role="alert"></p>
 
         <div class="add-item-form">
-          <p id="errorMessage"></p>
           <input
             class="item-input"
             type="text"
@@ -39,9 +38,8 @@
             class="item-input"
             type="number"
             id="item-quantity-input"
-            placeholder="How many do you need?"
-            min=1
-            defaultValue=1
+            placeholder="1"
+            min='1'
           />
           <button class="add-item-button" id="add-item-button">+</button>
         </div>

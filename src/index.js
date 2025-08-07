@@ -13,8 +13,7 @@ console.log("Shopping List App is initializing...");
   the list.
 */
 
-document.getElementById("add-item-button").onclick = function () {
-  
+document.getElementById("add-item-button").addEventListener("click", function () {
   const nameInput = document.getElementById("item-input");
   const quantityInput = document.getElementById("item-quantity-input");
   const nameValue = nameInput.value.trim();
@@ -24,10 +23,17 @@ document.getElementById("add-item-button").onclick = function () {
 
   errorMessageElement.textContent = ""; // Clear previous errors
 
-  // If nameValue is empty or quantityValue is invalid or less than 1 display error.
-  if (!nameValue || isNaN(quantityValue) || quantityValue < 1) {
-    errorMessageElement.innerText =
-      "Please enter a valid item name and quantity.";
+  // Validate input types and values and display error messages if necessary
+  if (!nameValue) {
+    errorMessageElement.textContent = "Name cannot be empty.";
+    return;
+  }
+  if (isNaN(quantityValue)) {
+    errorMessageElement.textContent = "Quantity must be a number.";
+    return;
+  }
+  if (quantityValue < 1) {
+    errorMessageElement.textContent = "Quantity must be at least 1.";
     return;
   }
 
@@ -36,10 +42,10 @@ document.getElementById("add-item-button").onclick = function () {
     nameInput.value = ""; // Reset name input field
     quantityInput.value = 1; // Reset quantity to default value
   } catch (err) {
-    errorMessage.textContent = "Failed to add item. Please try again.";
+    errorMessageElement.textContent = "Failed to add item. Please try again.";
     console.error(err);
   }
-}
+})
 
 // On page load, render the shopping list from localStorage.
 document.addEventListener("DOMContentLoaded", function () {
