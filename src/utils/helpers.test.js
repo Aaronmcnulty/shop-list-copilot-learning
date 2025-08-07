@@ -1,5 +1,7 @@
 import { capitalizeFirstLetter, formatItem } from "./helpers.js";
 
+// Tests for capitalizeFirstLetter function
+
 describe("capitalizeFirstLetter", () => {
   test("capitalizes the first letter of a string", () => {
     expect(capitalizeFirstLetter("hello")).toBe("Hello");
@@ -45,7 +47,22 @@ describe("capitalizeFirstLetter", () => {
   test("does not modify already capitalized strings", () => {
     expect(capitalizeFirstLetter("Already")).toBe("Already");
   });
+
+  test("handles mixed whitespace characters", () => {
+  expect(capitalizeFirstLetter("\t\n hello \r")).toBe("Hello");
+  });
+
+  test("returns empty string for array inputs", () => {
+  expect(formatItem([])).toBe("");
+  expect(capitalizeFirstLetter({})).toBe("");
+  });
+
+  test("handles unicode characters", () => {
+  expect(capitalizeFirstLetter("émile")).toBe("Émile");
 });
+});
+
+// Format item tests 
 
 describe("formatItem", () => {
   test("trims whitespace from the item", () => {
