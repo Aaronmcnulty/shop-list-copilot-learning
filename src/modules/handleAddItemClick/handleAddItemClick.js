@@ -3,9 +3,9 @@ import { getItems, saveItems } from "../localStorage/localStorage.js";
 
 export function handleAddItemClick(nameValue, quantityValue) {
   // If both name and quantity are provided, add the item to the list and update localStorage.
-
+console.log(typeof quantityValue, typeof nameValue);
   // Validate input types and throw error for invalid inputs.
-  if (typeof nameValue !== "string" || typeof quantityValue !== "number") {
+  if (typeof nameValue != "string" || typeof quantityValue != "number") {
     throw new Error("Invalid input: nameValue must be a string and quantityValue must be a number.");
   }
 
