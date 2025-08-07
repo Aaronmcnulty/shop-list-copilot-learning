@@ -28,20 +28,22 @@
           <p id="errorMessage" role="alert"></p>
 
         <div class="add-item-form">
+          <label for="item-input">Item Name:</label>
           <input
             class="item-input"
             type="text"
             id="item-input"
             placeholder="Add a new item"
           />
+          <label for="item-quantity-input">Quantity:</label>
           <input
             class="item-input"
             type="number"
             id="item-quantity-input"
-            placeholder="1"
-            min='1'
+            value="1"
+            min="1"
           />
-          <button class="add-item-button" id="add-item-button">+</button>
+          <button class="add-item-button" id="add-item-button" aria-label="Add item to list">+</button>
         </div>
       </div>
     </div>
